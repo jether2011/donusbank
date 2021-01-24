@@ -10,7 +10,10 @@ import java.util.*
 @Repository
 interface UserRepository : JpaRepository<User, Long> {
 
+    fun findByUsername(username: String): Optional<User>
+
     @EntityGraph(attributePaths = ["authorities"])
     @Cacheable(cacheNames = ["findByLoginWithAuthorities"])
     fun findOneWithAuthoritiesByUsername(username: String): Optional<User>
+
 }

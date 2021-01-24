@@ -1,5 +1,8 @@
 package com.jetherrodrigues.donusbank.domain.person
 
+import com.jetherrodrigues.donusbank.domain.account.Account
+import com.jetherrodrigues.donusbank.domain.auth.User
+import com.jetherrodrigues.donusbank.domain.person.types.PersonType
 import javax.persistence.*
 
 @Entity
@@ -7,6 +10,18 @@ import javax.persistence.*
 data class Person(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
-        val name: String
+        val id: Long? = null,
+        val name: String,
+        @Column(name = "tax_identifier", unique = true)
+        val taxIdentifier: String,
+        @Enumerated(EnumType.STRING)
+        val type: PersonType = PersonType.PF,
+
+        @OneToOne(optional = false)
+        @JoinColumn(unique = true)
+        val account: Account,
+
+        @OneToOne(optional = false)
+        @JoinColumn(unique = true)
+        val user: User
 )

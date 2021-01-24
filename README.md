@@ -18,3 +18,6 @@
 2. Improve second-level cache
 3. Improve component tests and other need tests to improve the coverage
 4. To improve audit can we use Envers
+5. Improve implementation for logs 
+6. Create API documentation to expose the endpoints contracts
+7. Improve account operations historic

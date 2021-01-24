@@ -1,6 +1,5 @@
 package com.jetherrodrigues.donusbank.domain.account
 
-import com.jetherrodrigues.donusbank.domain.person.Person
 import java.math.BigDecimal
 import javax.persistence.*
 import javax.validation.constraints.PositiveOrZero
@@ -10,14 +9,17 @@ import javax.validation.constraints.PositiveOrZero
 data class Account(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
+        val id: Long? = null,
+        @Column(nullable = false)
+        val bank: String,
+        @Column(nullable = false)
+        val bankNumber: Int,
         val branch: Int = 1,
-        @Column(unique = true)
+        @Column(unique = true, nullable = false)
         val number: String,
-        @PositiveOrZero
-        val amount: BigDecimal,
-
-        @OneToOne(optional = false)
-        @JoinColumn(unique = true)
-        val person: Person
-)
+        @field:PositiveOrZero
+        val amount: BigDecimal = BigDecimal.ZERO
+) {
+        fun addAmount(amount: BigDecimal) = amount.plus(amount)
+        fun toWithdraw(amount: BigDecimal) = amount.minus(amount)
+}
