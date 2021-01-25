@@ -1,0 +1,365 @@
+{
+	"info": {
+		"_postman_id": "ae64098e-433b-4ddc-b3c7-c77eb5d79138",
+		"name": "DonusBank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "find-one-with-authorities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/user/jether",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"user",
+								"jether"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"jether\",\n\t\"password\": \"jether\",\n\t\"authorities\": [\"ROLE_USER\", \"ROLE_CLIENT\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/user",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authority",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/authority",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"authority"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "person",
+			"item": [
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/person/1",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"person",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-tax-identifier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/person/11122233344/tax-identifier",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"person",
+								"11122233344",
+								"tax-identifier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/person",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Jether Rodrigues do Nascimento\",\n\t\"taxIdentifier\": \"12312312344\",\n\t\"userId\": 1,\n\t\"accountId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/person",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-person",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"name\": \"Jether Rodrigues do Nascimento\",\n\t\"taxIdentifier\": \"12312312355\",\n\t\"userId\": 1,\n\t\"accountId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/person",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-person",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/person/1",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"person",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/account",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-account-number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/account/123456/account-number",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"account",
+								"123456",
+								"account-number"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/account/1",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "perform-deposit",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"amount\": 100.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/account/1/deposit",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"account",
+								"1",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "perform-transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"amount\": 100.0,\n\t\"debitFrom\": \"123456\",\n\t\"favored\": \"123789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/account/transfer",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"account",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
