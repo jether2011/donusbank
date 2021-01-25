@@ -20,11 +20,11 @@ data class PersonRequest(
         @field:Size(min = 11, max = 11)
         val taxIdentifier: String,
         @field:NotNull
-        val user: User,
+        val userId: Long,
         @field:NotNull
-        val account: Account
+        val accountId: Long
 ) {
-    fun toPerson() = Person(
+    fun toPerson(user: User, account: Account) = Person(
             id = id,
             name = name,
             taxIdentifier = taxIdentifier,

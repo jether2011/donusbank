@@ -59,4 +59,7 @@ class AccountServiceImpl(private val accountRepository: AccountRepository) : Acc
         }
     }
 
+    @Transactional(readOnly = true)
+    override fun getOne(accountId: Long): Account = accountRepository.getOne(accountId)
+
 }

@@ -21,7 +21,7 @@ class UserResource(
         private val authorityRepository: AuthorityRepository
 ) {
 
-    @InitBinder
+    @InitBinder("userRequest")
     fun initBinder(binder: WebDataBinder) {
         binder.addValidators(UserAuthorityValidator(authorityRepository))
     }

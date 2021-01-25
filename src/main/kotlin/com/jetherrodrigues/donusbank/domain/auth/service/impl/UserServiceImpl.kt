@@ -24,8 +24,11 @@ class UserServiceImpl(private val userRepository: UserRepository) : UserService 
     @Transactional(readOnly = true)
     override fun findOneWithAuthoritiesByUsername(username: String): User {
         return userRepository.findOneWithAuthoritiesByUsername(username).orElseThrow {
-            throw NotFoundException("User [%s] not found")
+            throw NotFoundException("User [%s] not found".format(username))
         }
     }
+
+    @Transactional(readOnly = true)
+    override fun getOne(userId: Long): User = userRepository.getOne(userId)
 
 }

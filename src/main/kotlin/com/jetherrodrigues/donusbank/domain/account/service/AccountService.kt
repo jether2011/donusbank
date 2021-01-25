@@ -20,4 +20,6 @@ interface AccountService {
 
     fun transfer(accountTransfer: AccountTransfer)
 
+    fun getOne(accountId: Long): Account
+
 }

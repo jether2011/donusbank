@@ -22,15 +22,15 @@ private const val API_V1_ACCOUNT = "/api/v1/account"
 @RequestMapping(API_V1_ACCOUNT)
 class AccountResource(private val accountService: AccountService) {
 
-    @InitBinder
+    @InitBinder("accountDepositRequest")
     fun initBinder(binder: WebDataBinder) {
-        binder.addValidators(AccountDepositValidator())
+        binder.validator = AccountDepositValidator()
     }
 
     @PostMapping
     @Transactional
-    fun createAccount(@RequestBody @Valid request: AccountRequest): ResponseEntity<AccountResponse> =
-            request.let(AccountRequest::toAccount).run {
+    fun createAccount(@Valid @RequestBody accountRequest: AccountRequest): ResponseEntity<AccountResponse> =
+            accountRequest.let(AccountRequest::toAccount).run {
                 accountService.create(this)
             }.let {
                 ResponseEntity.created(URI("$API_V1_ACCOUNT/${it.id}"))
@@ -43,7 +43,7 @@ class AccountResource(private val accountService: AccountService) {
                 ResponseEntity.ok().body(AccountResponse.from(it))
             }
 
-    @GetMapping("/{number}")
+    @GetMapping("/{number}/account-number")
     fun getAccountByNumber(@PathVariable("number") number: String): ResponseEntity<AccountResponse> =
             accountService.findByNumber(number).let {
                 ResponseEntity.ok().body(AccountResponse.from(it))
@@ -60,16 +60,16 @@ class AccountResource(private val accountService: AccountService) {
     @ResponseStatus(HttpStatus.ACCEPTED)
     fun deposit(
             @PathVariable("number") number: String,
-            @RequestBody @Valid request: AccountDepositRequest
-    ) = request.let {
-        accountService.deposit(number, request.amount)
+            @Valid @RequestBody accountDepositRequest: AccountDepositRequest
+    ) = accountDepositRequest.let {
+        accountService.deposit(number, accountDepositRequest.amount)
     }
 
     @Transactional
     @PostMapping("/transfer")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    fun toWithDraw(@RequestBody @Valid request: AccountTransferRequest) =
-            request.let(AccountTransferRequest::toCommand).run {
+    fun toWithDraw(@Valid @RequestBody accountTransferRequest: AccountTransferRequest) =
+            accountTransferRequest.let(AccountTransferRequest::toCommand).run {
                 accountService.transfer(this)
             }
 

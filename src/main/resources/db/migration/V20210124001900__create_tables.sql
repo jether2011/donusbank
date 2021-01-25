@@ -30,6 +30,7 @@ create table tb_person (
     id bigserial not null,
     name varchar(255),
     tax_identifier varchar(11),
+    type varchar(10),
     account_id int8 not null,
     user_id int8 not null,
     primary key (id)

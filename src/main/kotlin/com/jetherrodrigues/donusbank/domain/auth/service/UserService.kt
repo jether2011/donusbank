@@ -8,4 +8,6 @@ interface UserService {
 
     fun findOneWithAuthoritiesByUsername(username: String): User
 
+    fun getOne(userId: Long): User
+
 }

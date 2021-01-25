@@ -15,7 +15,8 @@
 	<description>Donus Bank Account Manager Project</description>
 	<properties>
 		<java.version>1.8</java.version>
-		<kotlin.version>1.4.21</kotlin.version>
+<!--		<kotlin.version>1.4.21</kotlin.version>-->
+		<kotlin.version>1.3.60</kotlin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -96,12 +97,20 @@
 					</args>
 					<compilerPlugins>
 						<plugin>spring</plugin>
+						<plugin>jpa</plugin>
+						<plugin>no-arg</plugin>
 					</compilerPlugins>
+					<jvmTarget>1.8</jvmTarget>
 				</configuration>
 				<dependencies>
 					<dependency>
 						<groupId>org.jetbrains.kotlin</groupId>
 						<artifactId>kotlin-maven-allopen</artifactId>
+						<version>${kotlin.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jetbrains.kotlin</groupId>
+						<artifactId>kotlin-maven-noarg</artifactId>
 						<version>${kotlin.version}</version>
 					</dependency>
 				</dependencies>
