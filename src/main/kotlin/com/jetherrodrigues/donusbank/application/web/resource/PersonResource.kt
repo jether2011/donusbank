@@ -8,7 +8,6 @@ import com.jetherrodrigues.donusbank.domain.auth.service.UserService
 import com.jetherrodrigues.donusbank.domain.person.service.PersonService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
@@ -38,12 +37,6 @@ class PersonResource(
                     .body(PersonResponse.from(it))
         }
     }
-
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @Transactional
-    fun deletePerson(@PathVariable("id") id: Long) =
-        personService.delete(id)
 
     @PutMapping
     @Transactional

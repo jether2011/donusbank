@@ -13,7 +13,7 @@ data class User(
         val username: String,
         val password: String,
 
-        @ManyToMany
+        @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(
                 name = "tb_user_authority",
                 joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],

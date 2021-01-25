@@ -23,10 +23,6 @@ class PersonServiceImpl(private val personRepository: PersonRepository) : Person
         return personRepository.save(person)
     }
 
-    override fun delete(id: Long) {
-        personRepository.deleteById(id)
-    }
-
     override fun update(person: Person): Person {
         return personRepository.save(person)
     }

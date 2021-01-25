@@ -20,7 +20,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: "donusbank@email.com"
       PGADMIN_DEFAULT_PASSWORD: "123456"
     ports:
-      - "5555:80"
+      - "5556:80"
     depends_on:
       - postgres
     networks:

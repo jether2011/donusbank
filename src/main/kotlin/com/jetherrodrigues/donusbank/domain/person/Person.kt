@@ -17,11 +17,11 @@ data class Person(
         @Enumerated(EnumType.STRING)
         val type: PersonType = PersonType.PF,
 
-        @OneToOne(optional = false)
+        @OneToOne(optional = false, fetch = FetchType.EAGER)
         @JoinColumn(unique = true)
         val account: Account,
 
-        @OneToOne(optional = false)
+        @OneToOne(optional = false, fetch = FetchType.EAGER)
         @JoinColumn(unique = true)
         val user: User
 )

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ae64098e-433b-4ddc-b3c7-c77eb5d79138",
+		"_postman_id": "7e25c0a7-7258-4c61-9da6-88bdea5f2daf",
 		"name": "DonusBank",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -115,7 +115,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{local_host}}/{{context}}/api/v1/person/11122233344/tax-identifier",
+							"raw": "{{local_host}}/{{context}}/api/v1/person/12312312355/tax-identifier",
 							"host": [
 								"{{local_host}}"
 							],
@@ -124,7 +124,7 @@
 								"api",
 								"v1",
 								"person",
-								"11122233344",
+								"12312312355",
 								"tax-identifier"
 							]
 						}
@@ -158,7 +158,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Jether Rodrigues do Nascimento\",\n\t\"taxIdentifier\": \"12312312344\",\n\t\"userId\": 1,\n\t\"accountId\": 1\n}",
+							"raw": "{\n\t\"name\": \"Jether Rodrigues do Nascimento\",\n\t\"taxIdentifier\": \"12312312355\",\n\t\"userId\": 1,\n\t\"accountId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -187,7 +187,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\": 1,\n\t\"name\": \"Jether Rodrigues do Nascimento\",\n\t\"taxIdentifier\": \"12312312355\",\n\t\"userId\": 1,\n\t\"accountId\": 1\n}",
+							"raw": "{\n\t\"id\": 1,\n\t\"name\": \"Jether Rodrigues do Nascimento Nascimento\",\n\t\"taxIdentifier\": \"12312312355\",\n\t\"userId\": 1,\n\t\"accountId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -204,27 +204,6 @@
 								"api",
 								"v1",
 								"person"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete-person",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{local_host}}/{{context}}/api/v1/person/1",
-							"host": [
-								"{{local_host}}"
-							],
-							"path": [
-								"{{context}}",
-								"api",
-								"v1",
-								"person",
-								"1"
 							]
 						}
 					},
@@ -313,7 +292,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{local_host}}/{{context}}/api/v1/account/1/deposit",
+							"raw": "{{local_host}}/{{context}}/api/v1/account/123456/deposit",
 							"host": [
 								"{{local_host}}"
 							],
@@ -322,7 +301,7 @@
 								"api",
 								"v1",
 								"account",
-								"1",
+								"123456",
 								"deposit"
 							]
 						}
@@ -336,7 +315,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"amount\": 100.0,\n\t\"debitFrom\": \"123456\",\n\t\"favored\": \"123789\"\n}",
+							"raw": "{\n\t\"amount\": 50.0,\n\t\"debitFrom\": \"123456\",\n\t\"favored\": \"123789\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -354,6 +333,35 @@
 								"v1",
 								"account",
 								"transfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"bank\": \"Donus Bank\",\n\t\"bankNumber\": 123,\n\t\"number\": \"123789\",\n    \"branch\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_host}}/{{context}}/api/v1/account",
+							"host": [
+								"{{local_host}}"
+							],
+							"path": [
+								"{{context}}",
+								"api",
+								"v1",
+								"account"
 							]
 						}
 					},

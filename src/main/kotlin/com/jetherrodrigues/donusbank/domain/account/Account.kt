@@ -18,8 +18,7 @@ data class Account(
         @Column(unique = true, nullable = false)
         val number: String,
         @field:PositiveOrZero
-        val amount: BigDecimal = BigDecimal.ZERO
+        val amount: BigDecimal
 ) {
-        fun addAmount(amount: BigDecimal) = amount.plus(amount)
         fun toWithdraw(amount: BigDecimal) = amount.minus(amount)
 }

@@ -41,21 +41,17 @@ class AccountServiceImpl(private val accountRepository: AccountRepository) : Acc
             }
 
     override fun deposit(number: String, amount: BigDecimal) {
-        this.findByNumber(number).apply {
-            this.addAmount(amount)
-        }.let {
-            accountRepository.save(it)
+        this.findByNumber(number).let {
+            accountRepository.save(it.copy(amount = it.amount.plus(amount)))
         }
     }
 
     override fun transfer(accountTransfer: AccountTransfer) {
         val toWithdraw = this.findByNumber(accountTransfer.debitFrom)
-                .apply { this.toWithdraw(accountTransfer.amount) }
         val favored = this.findByNumber(accountTransfer.favored)
-                .apply { this.addAmount(accountTransfer.amount) }
 
-        accountRepository.save(toWithdraw).also {
-            accountRepository.save(favored)
+        accountRepository.save(toWithdraw.copy(amount = toWithdraw.amount.minus(accountTransfer.amount))).also {
+            accountRepository.save(favored.copy(amount = favored.amount.plus(accountTransfer.amount)))
         }
     }
 

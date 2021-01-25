@@ -1,6 +1,7 @@
 package com.jetherrodrigues.donusbank.application.web.resource.request
 
 import com.jetherrodrigues.donusbank.domain.account.Account
+import java.math.BigDecimal
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
@@ -25,6 +26,7 @@ data class AccountRequest(
             bank = bank,
             bankNumber = bankNumber,
             number = number,
-            branch = branch
+            branch = branch,
+            amount = BigDecimal.ZERO
     )
 }

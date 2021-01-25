@@ -7,13 +7,14 @@ import com.jetherrodrigues.donusbank.domain.account.exception.AccountAlreadyExis
 import com.jetherrodrigues.donusbank.domain.account.exception.AccountDepositLimitException
 import com.jetherrodrigues.donusbank.domain.auth.exception.UserAlreadyExistsException
 import com.jetherrodrigues.donusbank.domain.person.exception.PersonAlreadyExistsException
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import java.time.LocalDateTime
 import javax.persistence.EntityNotFoundException
-
 
 @RestControllerAdvice
 class ExceptionHandler {
@@ -22,6 +23,7 @@ class ExceptionHandler {
         const val ENTITY_ALREADY_EXISTS = "ENTITY_ALREADY_EXISTS"
         const val NOT_FOUND = "NOT_FOUND"
         const val BAD_REQUEST = "BAD_REQUEST"
+        const val INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR"
     }
 
     @ExceptionHandler(value = [
@@ -35,7 +37,8 @@ class ExceptionHandler {
 
     @ExceptionHandler(value = [
         BadRequestException::class,
-        AccountDepositLimitException::class
+        AccountDepositLimitException::class,
+        MethodArgumentNotValidException::class
     ])
     fun handleBadRequestException(e: RuntimeException): ResponseEntity<ErrorResponse> =
             ResponseEntity<ErrorResponse>(ErrorResponse(BAD_REQUEST,
@@ -48,6 +51,11 @@ class ExceptionHandler {
     fun handleNotFoundException(e: RuntimeException): ResponseEntity<ErrorResponse> =
             ResponseEntity<ErrorResponse>(ErrorResponse(NOT_FOUND,
                     e.message, HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND)
+
+    @ExceptionHandler(value = [DataIntegrityViolationException::class])
+    fun handleInternalServerError(e: RuntimeException): ResponseEntity<ErrorResponse> =
+            ResponseEntity<ErrorResponse>(ErrorResponse(INTERNAL_SERVER_ERROR,
+                    e.message, HttpStatus.INTERNAL_SERVER_ERROR.value()), HttpStatus.INTERNAL_SERVER_ERROR)
 
 }
 
