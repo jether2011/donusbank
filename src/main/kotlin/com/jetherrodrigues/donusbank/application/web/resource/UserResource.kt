@@ -23,13 +23,13 @@ class UserResource(
 
     @InitBinder("userRequest")
     fun initBinder(binder: WebDataBinder) {
-        binder.addValidators(UserAuthorityValidator(authorityRepository))
+        binder.validator = UserAuthorityValidator(authorityRepository)
     }
 
     @PostMapping
     @Transactional
-    fun createUser(@RequestBody @Valid request: UserRequest): ResponseEntity<UserResponse> =
-            request.let(UserRequest::toUser).run {
+    fun createUser(@Valid @RequestBody userRequest: UserRequest): ResponseEntity<UserResponse> =
+            userRequest.let(UserRequest::toUser).run {
                 userService.create(this)
             }.let {
                 ResponseEntity.created(URI("$API_V1_USER/${it.id}")).body(UserResponse.from(it))
