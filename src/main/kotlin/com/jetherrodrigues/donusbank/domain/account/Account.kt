@@ -19,6 +19,4 @@ data class Account(
         val number: String,
         @field:PositiveOrZero
         val amount: BigDecimal
-) {
-        fun toWithdraw(amount: BigDecimal) = amount.minus(amount)
-}
+)
