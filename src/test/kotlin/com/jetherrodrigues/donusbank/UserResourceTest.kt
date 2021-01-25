@@ -2,7 +2,6 @@ package com.jetherrodrigues.donusbank
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.jetherrodrigues.donusbank.application.web.resource.request.UserRequest
-import com.jetherrodrigues.donusbank.domain.auth.Authority
 import com.jetherrodrigues.donusbank.domain.auth.service.UserService
 import com.jetherrodrigues.donusbank.repository.PersonRepository
 import com.jetherrodrigues.donusbank.repository.UserRepository
