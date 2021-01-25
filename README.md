@@ -12,6 +12,21 @@
 3. Execute `sh start_api.sh` (the jvm and environments variables is set into script file)
 4. Use Postman collection to execute the operations
 
+### Environment variables and JVM args
+
+1. Environment variables
+```text
+DB_USER=donusbank
+DB_PASSWORD=dOnUSB@nK
+DB_DONUS_BANK=donusbank
+```
+
+2. JVM arguments
+```text
+-Dspring-boot.run.profiles=dev 
+-Dspring-boot.run.jvmArguments="-Xmx256m -Xms128m"
+```
+
 ### Future proposal
 
 1. Add a cache using REDIS
